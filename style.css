@@ -1,0 +1,10 @@
+:root { --primary: #128C7E; --bg: #f4f7f6; --white: #ffffff; }
+body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #333; line-height: 1.6; }
+.navbar { background: var(--white); padding: 15px 20px; display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.brand-name { font-weight: 800; color: var(--primary); text-transform: uppercase; }
+.container { max-width: 500px; margin: 30px auto; padding: 25px; background: var(--white); border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+.btn { display: block; padding: 15px; border-radius: 10px; text-decoration: none; font-weight: bold; margin: 10px 0; border: none; cursor: pointer; transition: 0.3s; }
+.btn-primary { background: var(--primary); color: white; }
+.btn-outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+.status-badge { padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; display: inline-block; }
+footer { text-align: center; padding: 20px; font-size: 0.7rem; color: #999; }

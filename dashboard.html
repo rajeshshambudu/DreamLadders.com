@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Tracker | Dream Ladders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" style="text-align: center;">
+        <h2>Revenue Command Center</h2>
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <div style="background: var(--primary); color: white; padding: 20px; border-radius: 10px; flex: 1;">
+                <h3 id="total-revenue">₹0</h3>
+                <p style="font-size: 0.7rem; margin: 0;">TOTAL COLLECTED</p>
+            </div>
+        </div>
+        
+        <p>To update status, open your <strong>Google Sheets App</strong> on your phone and change Cell A2 to PAID or PENDING.</p>
+        
+        <a href="https://sheets.google.com" target="_blank" class="btn btn-outline">Open Google Sheets</a>
+        <a href="admin.html" class="btn btn-primary">Back to Admin</a>
+    </div>
+
+    <script>
+        const sheetCSV = "YOUR_CSV_LINK_HERE";
+
+        async function loadRevenue() {
+            const response = await fetch(sheetCSV);
+            const text = await response.text();
+            const rows = text.split('\n');
+            let count = 0;
+            
+            // Logic: Count how many rows say "PAID" and multiply by 300
+            for(let i=1; i<rows.length; i++) {
+                if(rows[i].includes("PAID")) count++;
+            }
+            
+            document.getElementById('total-revenue').innerText = "₹" + (count * 300);
+        }
+        loadRevenue();
+    </script>
+</body>
+</html>

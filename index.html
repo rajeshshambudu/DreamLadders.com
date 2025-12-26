@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Site | Dream Ladders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="brand-name">DREAM <span>LADDERS</span></div>
+    </nav>
+
+    <div class="container" style="text-align: center;">
+        <div id="status-badge" style="padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; background: #eee;">
+            Checking Status...
+        </div>
+        
+        <h1>[Client Business Name]</h1>
+        <p>Welcome to our professional business page.</p>
+        
+        <div id="payment-warning" style="display: none; background: #ffebee; color: #c62828; padding: 15px; border-radius: 10px; margin: 20px 0; border: 1px solid #ef9a9a;">
+            <strong>Notice:</strong> Monthly maintenance is due. Please contact the administrator.
+        </div>
+
+        <a href="https://wa.me/91XXXXXXXXXX" class="btn btn-primary">Message Us on WhatsApp</a>
+    </div>
+
+    <script>
+        // PASTE YOUR PUBLISHED GOOGLE SHEET CSV LINK BELOW
+        const sheetCSV = "YOUR_CSV_LINK_HERE";
+
+        async function updateStatus() {
+            try {
+                const response = await fetch(sheetCSV);
+                const text = await response.text();
+                const rows = text.split('\n');
+                const currentStatus = rows[1].trim().toUpperCase(); // Reads Cell A2
+
+                const badge = document.getElementById('status-badge');
+                const warning = document.getElementById('payment-warning');
+
+                if (currentStatus === "PAID") {
+                    badge.innerHTML = "● SYSTEM ACTIVE";
+                    badge.style.background = "#e8f5e9";
+                    badge.style.color = "#2e7d32";
+                    warning.style.display = "none";
+                } else {
+                    badge.innerHTML = "● PAYMENT PENDING";
+                    badge.style.background = "#ffebee";
+                    badge.style.color = "#c62828";
+                    warning.style.display = "block";
+                }
+            } catch (e) {
+                console.error("Error loading status");
+            }
+        }
+        updateStatus();
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Invoice | Dream Ladders</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Monthly Invoice</h2>
+        <table>
+            <tr><th>Task</th><th>Fee</th></tr>
+            <tr><td>Monthly Maintenance</td><td>₹300.00</td></tr>
+        </table>
+        <div style="text-align:center;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=YOUR_UPI_ID%26pn=DreamLadders%26am=300%26cu=INR">
+            <a href="upi://pay?pa=YOUR_UPI_ID&pn=DreamLadders&am=300&cu=INR" class="btn btn-primary">Pay via UPI App</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,61 +1,50 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Site | Dream Ladders</title>
+    <title>Business Page | Dream Ladders</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="brand-name">DREAM <span>LADDERS</span></div>
-    </nav>
-
-    <div class="container" style="text-align: center;">
-        <div id="status-badge" style="padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; background: #eee;">
-            Checking Status...
-        </div>
+    <nav class="navbar"><div class="brand-name">DREAM LADDERS</div></nav>
+    <div class="container">
+        <div id="badge" class="status-badge" style="background: #eee;">Checking...</div>
+        <h1 id="biz-name">[Client Business Name]</h1>
+        <p>Premium Service Managed by Dream Ladders.</p>
         
-        <h1>[Client Business Name]</h1>
-        <p>Welcome to our professional business page.</p>
-        
-        <div id="payment-warning" style="display: none; background: #ffebee; color: #c62828; padding: 15px; border-radius: 10px; margin: 20px 0; border: 1px solid #ef9a9a;">
-            <strong>Notice:</strong> Monthly maintenance is due. Please contact the administrator.
+        <div id="warning" style="display:none; background:#ffebee; color:#c62828; padding:15px; border-radius:10px; margin-bottom:20px;">
+            ⚠️ <strong>Account Notice:</strong> Service update required. Please contact support.
         </div>
 
-        <a href="https://wa.me/91XXXXXXXXXX" class="btn btn-primary">Message Us on WhatsApp</a>
+        <a href="https://wa.me/91XXXXXXXXXX" class="btn btn-primary">Contact Us</a>
     </div>
 
     <script>
-        // PASTE YOUR PUBLISHED GOOGLE SHEET CSV LINK BELOW
-        const sheetCSV = "YOUR_CSV_LINK_HERE";
+        const sheetCSV = "YOUR_CSV_LINK_HERE"; // PASTE YOUR LINK HERE
 
-        async function updateStatus() {
+        async function syncStatus() {
             try {
-                const response = await fetch(sheetCSV);
-                const text = await response.text();
-                const rows = text.split('\n');
-                const currentStatus = rows[1].trim().toUpperCase(); // Reads Cell A2
+                const res = await fetch(sheetCSV);
+                const data = await res.text();
+                const status = data.split('\n')[1].split(',')[1].trim().toUpperCase(); 
+                
+                const badge = document.getElementById('badge');
+                const warning = document.getElementById('warning');
 
-                const badge = document.getElementById('status-badge');
-                const warning = document.getElementById('payment-warning');
-
-                if (currentStatus === "PAID") {
+                if (status === "PAID") {
                     badge.innerHTML = "● SYSTEM ACTIVE";
-                    badge.style.background = "#e8f5e9";
-                    badge.style.color = "#2e7d32";
+                    badge.style.background = "#e8f5e9"; badge.style.color = "#2e7d32";
                     warning.style.display = "none";
                 } else {
-                    badge.innerHTML = "● PAYMENT PENDING";
-                    badge.style.background = "#ffebee";
-                    badge.style.color = "#c62828";
+                    badge.innerHTML = "● ACTION REQUIRED";
+                    badge.style.background = "#ffebee"; badge.style.color = "#c62828";
                     warning.style.display = "block";
                 }
-            } catch (e) {
-                console.error("Error loading status");
-            }
+            } catch (e) { console.error("Sync Error"); }
         }
-        updateStatus();
+        syncStatus();
     </script>
 </body>
 </html>

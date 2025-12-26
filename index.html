@@ -1,61 +1,77 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Site | Dream Ladders</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AuthMaster | User Management Solution</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
-    <nav class="navbar">
-        <div class="brand-name">DREAM <span>LADDERS</span></div>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <nav class="flex items-center justify-between px-8 py-6 bg-white shadow-sm">
+        <div class="text-2xl font-bold text-blue-600">Auth<span class="text-slate-800">Master</span></div>
+        <div class="hidden md:flex space-x-8 font-medium">
+            <a href="#features" class="hover:text-blue-600 transition">Features</a>
+            <a href="#demo" class="hover:text-blue-600 transition">Live Demo</a>
+            <a href="#pricing" class="hover:text-blue-600 transition">Pricing</a>
+        </div>
+        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700 transition">
+            Get Code
+        </button>
     </nav>
 
-    <div class="container" style="text-align: center;">
-        <div id="status-badge" style="padding: 5px 15px; border-radius: 20px; display: inline-block; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; background: #eee;">
-            Checking Status...
+    <header class="max-w-6xl mx-auto px-8 py-20 text-center">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight">
+            Launch your SaaS with <br><span class="text-blue-600">Ready-to-Use Auth</span>
+        </h1>
+        <p class="text-xl text-slate-600 mb-10 max-w-2xl mx-auto">
+            A complete GitHub-ready boilerplate with User Registration, Password Reset, and Role-Based Access Control. Save 40+ hours of development.
+        </p>
+        <div class="flex flex-col md:flex-row justify-center gap-4">
+            <button onclick="alert('Demo Login System Triggered!')" class="bg-slate-900 text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-slate-800 transition">
+                Try Live Demo
+            </button>
+            <button class="border-2 border-slate-200 px-8 py-4 rounded-xl text-lg font-bold hover:bg-slate-100 transition">
+                View Documentation
+            </button>
         </div>
-        
-        <h1>[Client Business Name]</h1>
-        <p>Welcome to our professional business page.</p>
-        
-        <div id="payment-warning" style="display: none; background: #ffebee; color: #c62828; padding: 15px; border-radius: 10px; margin: 20px 0; border: 1px solid #ef9a9a;">
-            <strong>Notice:</strong> Monthly maintenance is due. Please contact the administrator.
+    </header>
+
+    <section id="features" class="bg-white py-20">
+        <div class="max-w-6xl mx-auto px-8">
+            <h2 class="text-3xl font-bold text-center mb-16">Everything you need to manage users</h2>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">User Registration</h3>
+                    <p class="text-slate-600">Secure signup flows with email verification and data validation out of the box.</p>
+                </div>
+                <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Role-Based Access</h3>
+                    <p class="text-slate-600">Easily define 'Admin', 'Editor', and 'User' roles to protect your sensitive routes.</p>
+                </div>
+                <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center mb-4 text-xl">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Password Reset</h3>
+                    <p class="text-slate-600">Complete "Forgot Password" flow including secure token-based resets via email.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <a href="https://wa.me/91XXXXXXXXXX" class="btn btn-primary">Message Us on WhatsApp</a>
-    </div>
+    <footer class="bg-slate-900 text-white py-12 text-center">
+        <p class="text-slate-400 mb-4">Want this full system built for your business?</p>
+        <a href="mailto:your-email@example.com" class="text-blue-400 font-bold hover:underline text-lg">Contact me for custom development →</a>
+    </footer>
 
-    <script>
-        // PASTE YOUR PUBLISHED GOOGLE SHEET CSV LINK BELOW
-        const sheetCSV = "YOUR_CSV_LINK_HERE";
-
-        async function updateStatus() {
-            try {
-                const response = await fetch(sheetCSV);
-                const text = await response.text();
-                const rows = text.split('\n');
-                const currentStatus = rows[1].trim().toUpperCase(); // Reads Cell A2
-
-                const badge = document.getElementById('status-badge');
-                const warning = document.getElementById('payment-warning');
-
-                if (currentStatus === "PAID") {
-                    badge.innerHTML = "● SYSTEM ACTIVE";
-                    badge.style.background = "#e8f5e9";
-                    badge.style.color = "#2e7d32";
-                    warning.style.display = "none";
-                } else {
-                    badge.innerHTML = "● PAYMENT PENDING";
-                    badge.style.background = "#ffebee";
-                    badge.style.color = "#c62828";
-                    warning.style.display = "block";
-                }
-            } catch (e) {
-                console.error("Error loading status");
-            }
-        }
-        updateStatus();
-    </script>
 </body>
 </html>
